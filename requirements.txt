@@ -1,0 +1,5 @@
+# Proyecto Integrador 1 - Movie Reviews
+# Verificado con: Django 6.0.7, matplotlib 3.x, pillow 12.1.1 (Python 3.12)
+django
+matplotlib
+pillow

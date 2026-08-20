@@ -3,8 +3,25 @@
 {% block title %}Statistics - Movie Reviews{% endblock %}
 
 {% block content %}
-<div class="container py-4">
-  <h1 class="text-light">Statistics</h1>
-  <p class="text-secondary">Movie charts will be available here.</p>
+<div class="container py-4 pb-5">
+  <h1 class="text-light mb-4">Statistics</h1>
+
+  <section class="mb-4">
+    <h2 class="h4 text-light">Movies by year</h2>
+    <img
+      class="img-fluid border border-secondary rounded"
+      src="data:image/png;base64,{{ year_chart }}"
+      alt="Bar chart of movies by year"
+    />
+  </section>
+
+  <section>
+    <h2 class="h4 text-light">Movies by genre</h2>
+    <img
+      class="img-fluid border border-secondary rounded"
+      src="data:image/png;base64,{{ genre_chart }}"
+      alt="Bar chart of movies by genre"
+    />
+  </section>
 </div>
 {% endblock %}
