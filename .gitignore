@@ -1,2 +1,17 @@
 *.pyc
 __pycache__/
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Datasets (see docs/DATASETS.md — too large for Git)
+*.csv
+
+# Local tooling / OS noise
+*.log
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
