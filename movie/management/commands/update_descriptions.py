@@ -7,7 +7,8 @@ INSTRUCTION = (
     "Vas a actuar como un aficionado del cine que sabe describir de forma clara, "
     "concisa y precisa cualquier película en menos de 200 palabras. La descripción "
     "debe incluir el género de la película y cualquier información adicional que sirva "
-    "para crear un sistema de recomendación."
+    "para crear un sistema de recomendación. Responde solo con la descripción, "
+    "sin introducción ni formato markdown."
 )
 
 
