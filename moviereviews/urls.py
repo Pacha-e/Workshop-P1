@@ -13,6 +13,7 @@ urlpatterns = [
     path("", movieViews.home, name="home"),
     path("about/", movieViews.about, name="about"),
     path("news/", include("news.urls")),
+    path("recommendations/", movieViews.recommendations, name="recommendations"),
     path("statistics/", movieViews.statistics_view, name="statistics"),
 ]
 

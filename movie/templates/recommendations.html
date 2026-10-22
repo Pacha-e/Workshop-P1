@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}Recommendations - Movie Reviews{% endblock %}
+
+{% block content %}
+<div class="container py-4 pb-5">
+  <h1 class="text-light">Movie Recommendations</h1>
+  <p class="text-secondary">
+    Describe la película que quieres ver y te recomendamos la más similar usando
+    embeddings y similitud de coseno.
+  </p>
+
+  <form method="GET" class="row g-2 my-4">
+    <div class="col">
+      <input
+        type="text"
+        name="prompt"
+        class="form-control"
+        placeholder="Ej: película de terror sobre un monstruo"
+        value="{{ prompt }}"
+        required
+      />
+    </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-primary">Recommend</button>
+    </div>
+  </form>
+
+  {% if error %}
+  <div class="alert alert-danger">{{ error }}</div>
+  {% elif movie %}
+  <h2 class="text-light mb-3">Película recomendada</h2>
+  <div
+    class="card border-secondary mx-auto"
+    style="background-color: #161616; max-width: 32rem"
+  >
+    <div
+      style="
+        height: 320px;
+        background-color: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      "
+    >
+      <img
+        src="{{ movie.image.url }}"
+        alt="{{ movie.title }}"
+        style="max-height: 100%; max-width: 100%; object-fit: contain"
+      />
+    </div>
+    <div class="card-body">
+      <h5 class="card-title text-light mb-1">{{ movie.title }}</h5>
+      <p class="mb-2 small">
+        <span class="text-secondary">Year:</span>
+        <span class="text-light">{{ movie.year|default:"N/A" }}</span>
+        <br />
+        <span class="text-secondary">Genre:</span>
+        <span class="text-light">{{ movie.genre|default:"N/A" }}</span>
+        <br />
+        <span class="text-secondary">Similitud:</span>
+        <span class="text-light">{{ similarity|floatformat:4 }}</span>
+      </p>
+      <p class="card-text text-secondary small">{{ movie.description }}</p>
+    </div>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

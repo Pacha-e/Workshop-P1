@@ -25,7 +25,8 @@ SECRET_KEY = "django-insecure-cu$vu3xbcy%hh7)(ha-5n3ug*@w8m^pslka4cf$!)q+@*d-r@^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# Taller 4: la IP pública de EC2 cambia al detener la instancia
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition

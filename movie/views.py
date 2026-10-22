@@ -3,9 +3,11 @@ from collections import Counter
 from io import BytesIO
 
 import matplotlib
+import numpy as np
 from django.db.models import Count
 from django.shortcuts import render
 
+from .ai import cosine_similarity, get_client, get_embedding
 from .models import Movie
 
 matplotlib.use("Agg")
@@ -24,6 +26,26 @@ def home(request):
         request,
         "home.html",
         {"name": "Emmanuel Hernández", "searchTerm": searchTerm, "movies": movies},
+    )
+
+
+def recommendations(request):
+    prompt = request.GET.get("prompt", "").strip()
+    best_movie = similarity = error = None
+    if prompt:
+        try:
+            prompt_emb = get_embedding(get_client(), prompt)
+        except Exception as exc:
+            error = f"No se pudo generar el embedding del prompt: {exc}"
+        else:
+            for movie in Movie.objects.all():
+                score = cosine_similarity(prompt_emb, np.frombuffer(movie.emb, dtype=np.float32))
+                if similarity is None or score > similarity:
+                    best_movie, similarity = movie, score
+    return render(
+        request,
+        "recommendations.html",
+        {"prompt": prompt, "movie": best_movie, "similarity": similarity, "error": error},
     )
 
 
