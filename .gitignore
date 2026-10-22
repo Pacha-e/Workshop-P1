@@ -8,6 +8,11 @@ env/
 
 # Datasets (see docs/DATASETS.md — too large for Git)
 *.csv
+!docs/taller3/material/updated_movie_descriptions.csv
+# Credenciales locales de los talleres
+.env
+*.env
+openAI.env
 
 # Local tooling / OS noise
 *.log
